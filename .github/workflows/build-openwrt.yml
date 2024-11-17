@@ -4,8 +4,6 @@
 name: Build OpenWrt-K
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 4 * * *'
   push:
     paths:
       - '.github/**'
@@ -24,6 +22,8 @@ permissions:
   discussions: write
 env:
   GITHUB_TOKEN: ${{ github.token }}
+  BUILD_HELPER_DEBUG: true
+jobs:
 
   prepare:
     outputs:
