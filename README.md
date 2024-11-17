@@ -113,56 +113,8 @@
   kmod-via-velocity  
   kmod-vmxnet3
 
-### 固件预览
-
-#### 概览
-
-![概览](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/1.webp)
-
-#### 新版netdata实时监控
-
-![实时监控](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/2.webp)
-
-#### DiskMan 磁盘管理
-
-![磁盘管理](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/3.webp)
-
-#### Argon 主题设置
-
-![Argon 主题设置](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/4.webp)
-
-#### AdGuardHome广告屏蔽工具
-
-![luci-app-adguardhome](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/5.webp)
-![AdGuardHome](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/11.webp)
-
-#### SmartDNS DNS服务器
-
-![SmartDNS](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/6.webp)
-
-#### 文件助手
-
-![文件助手](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/7.webp)
-
-#### Socat网络工具
-
-![概览](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/8.webp)
-
-#### Turbo ACC 网络加速
-
-![概览](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/9.webp)
-
-#### ZeroTier虚拟局域网
-
-![概览](https://raw.githubusercontent.com/chenmozhijin/OpenWrt-K/main/img/10.webp)
-## 更新日志
-
-见[CHANGELOG](CHANGELOG.md)
-
-## 感谢
-
  感谢以下项目与各位制作软件包大佬的付出
-
++ [chenmozhijin/OpenWrt-K](https://github.com/chenmozhijin/OpenWrt-K/)
 + [openwrt/openwrt](https://github.com/openwrt/openwrt/)
 + [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 + [Lienol/openwrt](https://github.com/Lienol/openwrt)
