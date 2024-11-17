@@ -39,7 +39,7 @@
   “✓”[luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config):Argon 主题设置  
   “×”luci-app-aria2：aria2下载器  
   “✓”luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
-  luci-app-ddns：动态 DNS  
+  “×”luci-app-ddns：动态 DNS  
   “✓”[luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   “✓”luci-app-fileassistant：文件助手  
   “✓”luci-app-firewall：防火墙  
