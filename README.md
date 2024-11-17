@@ -43,21 +43,21 @@
   “✓”[luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   “✓”luci-app-fileassistant：文件助手  
   “✓”luci-app-firewall：防火墙  
-  “✓”luci-app-netdata：[Netdata](https://github.com/netdata/netdata) 实时监控  
+  “×”luci-app-netdata：[Netdata](https://github.com/netdata/netdata) 实时监控  
   “×”[luci-app-netspeedtest](https://github.com/sirpdboy/netspeedtest)：网速测试  
   “×”luci-app-nlbwmon：网络带宽监视器  
   “✓”luci-app-opkg：软件包  
   “×”[luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
-  “✓”[luci-app-passwall](https://github.com/xiaorouji/openwrt-passwall)：passwall  
+  “×”[luci-app-passwall](https://github.com/xiaorouji/openwrt-passwall)：passwall  
   “✓”[luci-app-passwall2](https://github.com/xiaorouji/openwrt-passwall2)：passwall2  
-  “✓”luci-app-rclone：Rclone命令行网盘工具设置界面  
+  “×”luci-app-rclone：Rclone命令行网盘工具设置界面  
   “✓”luci-app-samba4：samba网络共享  
   “✓”[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
   “✓”[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
   “✓”luci-app-ttyd：ttyd 终端  
   “✓”[luci-app-turboacc](https://github.com/chenmozhijin/turboacc)：Turbo ACC 网络加速  
   “✓”luci-app-upnp：通用即插即用（UPnP）  
-  “✓”luci-app-usb-printer：USB 打印服务器   
+  “×”luci-app-usb-printer：USB 打印服务器   
   “✓”luci-app-webadmin：Web 管理页面设置  
   “×”[luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
   “×”luci-app-wireguard：WireGuard 状态  
