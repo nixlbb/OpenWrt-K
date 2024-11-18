@@ -260,7 +260,7 @@ function input_parameters() {
     if [ "$(grep -c "^zonename=" $TMPDIR/openwrtext.config)" -eq '1' ];then
         zonename=$(grep "^zonename=" $TMPDIR/openwrtext.config|sed -e "s/zonename=//")
     else
-        zonename="Asia/Shanghai"
+        zonename="Etc/GMT-8"
     fi
     if [ "$(grep -c "^golang_version=" $TMPDIR/openwrtext.config)" -eq '1' ];then
         golang_version=$(grep "^golang_version=" $TMPDIR/openwrtext.config|sed -e "s/golang_version=//")
@@ -1239,7 +1239,7 @@ openwrt_extension_config() {
         7)
             sed -i "/^ipaddr/s/=.*/=192.168.8.1/g" buildconfig.config
             sed -i "/^timezone=/s/=.*/=CST-8/g" buildconfig.config
-            sed -i "/^zonename=/s#=.*#=Asia/Shanghai#g" buildconfig.config
+            sed -i "/^zonename=/s#=.*#=Etc/GMT-8#g" buildconfig.config
             sed -i  "/^kmod_compile_exclude_list=/s/=.*/=kmod-shortcut-fe-cm,kmod-shortcut-fe,kmod-fast-classifier/g" buildconfig.config
             sed -i "/^use_cache=/s/=.*/=true/g" buildconfig.config
             sed -i "/^golang_version=/s/=.*/=22.x/g" buildconfig.config
