@@ -53,7 +53,7 @@
   “×”luci-app-rclone：Rclone命令行网盘工具设置界面  
   “✓”luci-app-samba4：samba网络共享  
   “×”[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
-  “✓”[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
+  “×”[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
   “✓”luci-app-ttyd：ttyd 终端  
   “✓”[luci-app-turboacc](https://github.com/chenmozhijin/turboacc)：Turbo ACC 网络加速  
   “✓”luci-app-upnp：通用即插即用（UPnP）  
@@ -61,18 +61,18 @@
   “✓”luci-app-webadmin：Web 管理页面设置  
   “×”[luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
   “×”luci-app-wireguard：WireGuard 状态  
-  “✓”luci-app-wol：网络唤醒  
+  “×”luci-app-wol：网络唤醒  
   “×”luci-app-zerotier：ZeroTier虚拟局域网
 
 1. 其他部分软件包：  
-  ethtool-full：网卡工具用于查询及设置网卡参数  
-  sudo：sudo命令支持  
-  htop：系统监控与进程管理软件    
-  cfdisk：磁盘分区工具  
-  bc：一个命令行计算器  
-  coremark：cpu跑分测试  
-  pciutils：PCI 设备配置工具  
-  usbutils：USB 设备列出工具  
+  “✓”ethtool-full：网卡工具用于查询及设置网卡参数  
+  “✓”sudo：sudo命令支持  
+  “✓”htop：系统监控与进程管理软件    
+  “✓”cfdisk：磁盘分区工具  
+  “✓”bc：一个命令行计算器  
+  “×”coremark：cpu跑分测试  
+  “✓”pciutils：PCI 设备配置工具  
+  “✓”usbutils：USB 设备列出工具  
 
 1. LuCI主题：[Argon](https://github.com/jerrykuku/luci-theme-argon)
 
