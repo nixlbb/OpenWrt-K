@@ -52,7 +52,7 @@
   “✓”[luci-app-passwall2](https://github.com/xiaorouji/openwrt-passwall2)：passwall2  
   “×”luci-app-rclone：Rclone命令行网盘工具设置界面  
   “✓”luci-app-samba4：samba网络共享  
-  “✓”[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
+  “×”[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
   “✓”[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
   “✓”luci-app-ttyd：ttyd 终端  
   “✓”[luci-app-turboacc](https://github.com/chenmozhijin/turboacc)：Turbo ACC 网络加速  
