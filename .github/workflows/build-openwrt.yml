@@ -14,7 +14,6 @@ on:
       - '!.gitignore'
       - '!LICENSE'
       - '!README.md'
-      - '!img/**'
 
 permissions:
   actions: write
