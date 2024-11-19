@@ -1,10 +1,4 @@
 # OpenWrt-K
-
-[![GitHub Repo stars](https://img.shields.io/github/stars/chenmozhijin/OpenWrt-K)](https://github.com/chenmozhijin/OpenWrt-K/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/chenmozhijin/OpenWrt-K)](https://github.com/chenmozhijin/OpenWrt-K/forks?include=active%2Carchived%2Cinactive%2Cnetwork&page=1&period=2y&sort_by=stargazer_counts)
-[![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/chenmozhijin/OpenWrt-K)](https://github.com/chenmozhijin/OpenWrt-K/commits)
-[![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/chenmozhijin/OpenWrt-K)](https://github.com/chenmozhijin/OpenWrt-K/commits)
-[![Workflow Status](https://github.com/chenmozhijin/OpenWrt-K/actions/workflows/build-openwrt.yml/badge.svg)](https://github.com/chenmozhijin/OpenWrt-K/actions)
 > OpenWRT软件包与固件自动云编译
 
 ## 目录
@@ -38,7 +32,7 @@
   “✓”[luci-app-adguardhome](https://github.com/chenmozhijin/luci-app-adguardhome) :AdGuardHome广告屏蔽工具的luci设置界面  
   “✓”[luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config):Argon 主题设置  
   “×”luci-app-aria2：aria2下载器  
-  “✓”luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
+  “×”luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
   “×”luci-app-ddns：动态 DNS  
   “✓”[luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   “✓”luci-app-fileassistant：文件助手  
