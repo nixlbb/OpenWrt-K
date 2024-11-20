@@ -26,15 +26,11 @@ dns:
     - 119.29.29.29
     - 223.5.5.5
     - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
   upstream_dns_file: ""
   bootstrap_dns:
     - 119.29.29.29
     - 223.5.5.5
     - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
   fallback_dns: []
   upstream_mode: parallel
   fastest_timeout: 1s
