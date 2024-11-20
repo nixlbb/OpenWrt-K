@@ -126,14 +126,6 @@ filters:
     name: Youtube去广告
     id: 1677875720
   - enabled: true
-    url: https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/lazy.txt
-    name: Adbyby-lazy
-    id: 1677875721
-  - enabled: true
-    url: https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/video.txt
-    name: Adbyby-video
-    id: 1677875722
-  - enabled: true
     url: https://raw.githubusercontent.com/banbendalao/ADgk/master/ADgk.txt
     name: ADgk
     id: 1677875724
