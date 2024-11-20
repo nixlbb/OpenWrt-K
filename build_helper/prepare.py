@@ -354,20 +354,6 @@ def prepare_cfg(config: dict[str, Any],
                 
     tmpdir.cleanup()
 
-    # 获取bt_trackers
-    bt_tracker = request_get("https://github.com/XIU2/TrackersListCollection/raw/master/all_aria2.txt")
-    # 替换信息
-    with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), encoding="utf-8") as f:
-        content = f.read()
-    with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), "w", encoding="utf-8") as f:
-        for line in content.splitlines():
-            if line.startswith("uci set network.lan.ipaddr="):
-                f.write(f"uci set network.lan.ipaddr='{config["openwrtext"]["ipaddr"]}'\n")
-            elif "Compiled by 沉默の金" in line:
-                f.write(line.replace("Compiled by 沉默の金", f"Compiled by {compiler}") + "\n")
-            else:
-                f.write(line + "\n")
-
     logger.info("%s其他处理", cfg_name)
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), encoding="utf-8") as f:
         content = f.read()
