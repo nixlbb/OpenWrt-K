@@ -98,8 +98,6 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     logger.info("开始克隆拓展软件源码...")
     to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", ""),
                                        ("https://github.com/chenmozhijin/turboacc", "package"),
-                                       ("https://github.com/pymumu/openwrt-smartdns", "master"),
-                                       ("https://github.com/pymumu/luci-app-smartdns", "master"),
                                        *[(pkg["REPOSITORIE"], pkg["BRANCH"]) for config in configs.values() for pkg in config["extpackages"].values()],
                                        *[("https://github.com/sbwml/packages_lang_golang",
                                           config["openwrtext"]["golang_version"]) for config in configs.values()]}
@@ -216,19 +214,6 @@ def prepare_cfg(config: dict[str, Any],
 
     logger.info("%s开始更新feeds...", cfg_name)
     openwrt.feed_update()
-
-    logger.info("%s开始更新netdata、smartdns...", cfg_name)
-    # 更新netdata
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), ignore_errors=True)
-    shutil.copytree(os.path.join(cloned_repos[("https://github.com/immortalwrt/packages", "")], "admin", "netdata"),
-                        os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), symlinks=True)
-    # 更新smartdns
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), ignore_errors=True)
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), ignore_errors=True)
-    shutil.copytree(cloned_repos[("https://github.com/pymumu/luci-app-smartdns", "master")],
-                    os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), symlinks=True)
-    shutil.copytree(cloned_repos[("https://github.com/pymumu/openwrt-smartdns", "master")],
-                    os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), symlinks=True)
 
     logger.info("%s处理软件包...", cfg_name)
     for pkg_name, pkg in config["extpackages"].items():
@@ -358,18 +343,6 @@ def prepare_cfg(config: dict[str, Any],
             else:
                 logger.error("未找到可用的AdGuardHome二进制文件")
 
-    if clash_arch and openwrt.get_package_config("luci-app-openclash") == "y":
-        logger.info("%s下载架构为%s的OpenClash核心", cfg_name, clash_arch)
-        latest_versions = request_get("https://raw.githubusercontent.com/vernesong/OpenClash/core/master/core_version")
-        tun_v = latest_versions.splitlines()[1] if latest_versions else None
-        if tun_v:
-            dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/premium/clash-{clash_arch}-{tun_v}.gz",
-                                os.path.join(tmpdir.name, "clash_tun.gz")))
-        dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-{clash_arch}.tar.gz",
-                                os.path.join(tmpdir.name, "clash_meta.tar.gz")))
-        dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-{clash_arch}.tar.gz",
-                                os.path.join(tmpdir.name, "clash.tar.gz")))
-
     wait_dl_tasks(dl_tasks)
     # 解压
     if os.path.isfile(os.path.join(tmpdir.name, "AdGuardHome.tar.gz")):
@@ -378,29 +351,7 @@ def prepare_cfg(config: dict[str, Any],
                 with open(os.path.join(files_path, "usr", "bin", "AdGuardHome", "AdGuardHome"), "wb") as f:
                     f.write(file.read())
                 os.chmod(os.path.join(files_path, "usr", "bin", "AdGuardHome", "AdGuardHome"), 0o755)  # noqa: S103
-
-    clash_core_path = os.path.join(files_path, "etc", "openclash", "core")
-    if not os.path.isdir(clash_core_path):
-        os.makedirs(clash_core_path)
-    if os.path.isfile(os.path.join(tmpdir.name, "clash_tun.gz")):
-        with gzip.open(os.path.join(tmpdir.name, "clash_tun.gz"), 'rb') as f_in, open(os.path.join(clash_core_path, "clash_tun"), 'wb') as f_out:
-            shutil.copyfileobj(f_in, f_out)
-        os.chmod(os.path.join(clash_core_path, "clash_tun"), 0o755)  # noqa: S103
-
-    if os.path.isfile(os.path.join(tmpdir.name, "clash_meta.tar.gz")):
-        with tarfile.open(os.path.join(tmpdir.name, "clash_meta.tar.gz"), "r:gz") as tar:
-            if file := tar.extractfile("clash"):
-                with open(os.path.join(clash_core_path, "clash_meta"), "wb") as f:
-                    f.write(file.read())
-                os.chmod(os.path.join(clash_core_path, "clash_meta"), 0o755)  # noqa: S103
-
-    if os.path.isfile(os.path.join(tmpdir.name, "clash.tar.gz")):
-        with tarfile.open(os.path.join(tmpdir.name, "clash.tar.gz"), "r:gz") as tar:
-            if file := tar.extractfile("clash"):
-                with open(os.path.join(clash_core_path, "clash"), "wb") as f:
-                    f.write(file.read())
-                os.chmod(os.path.join(clash_core_path, "clash"), 0o755)  # noqa: S103
-
+                
     tmpdir.cleanup()
 
     # 获取bt_trackers
@@ -410,9 +361,7 @@ def prepare_cfg(config: dict[str, Any],
         content = f.read()
     with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), "w", encoding="utf-8") as f:
         for line in content.splitlines():
-            if line.startswith("  uci set aria2.main.bt_tracker="):
-                f.write(f"  uci set aria2.main.bt_tracker='{bt_tracker}'\n")
-            elif line.startswith("uci set network.lan.ipaddr="):
+            if line.startswith("uci set network.lan.ipaddr="):
                 f.write(f"uci set network.lan.ipaddr='{config["openwrtext"]["ipaddr"]}'\n")
             elif "Compiled by 沉默の金" in line:
                 f.write(line.replace("Compiled by 沉默の金", f"Compiled by {compiler}") + "\n")
@@ -425,7 +374,7 @@ def prepare_cfg(config: dict[str, Any],
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), "w", encoding="utf-8") as f:
         for line in content.splitlines():
             if "set system.@system[-1].hostname='OpenWrt'" in line:
-                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='OpenWrt-k'") + "\n")
+                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='Home'") + "\n")
             elif "set system.@system[-1].timezone='UTC'" in line:
                 f.write(line.replace("set system.@system[-1].timezone='UTC'",
                                      f"set system.@system[-1].timezone='{config['openwrtext']['timezone']}'") +
