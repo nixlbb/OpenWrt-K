@@ -1,13 +1,8 @@
 127.0.0.1 localhost
 ::1 localhost
-
-#pkg=white.ad.web.com;【提示误伤】选择性不√以下子项
-#------------------------------------------
 127.0.0.1 livew.l.qq.com #-> 腾讯视频
 127.0.0.1 t7z.cupid.iqiyi.com #-> 爱奇艺
 127.0.0.1 wxsnsdy.wxs.qq.com #-> 微信
-#------------------------------------------
-#--下列会影响奖励形式的广告(小程序\小游戏等)
 127.0.0.1 is.snssdk.com
 127.0.0.1 adsmind.gdtimg.com
 127.0.0.1 pv.sohu.com
@@ -30,9 +25,6 @@
 127.0.0.1 win.gdt.qq.com
 127.0.0.1 ipv4.gdt.qq.com
 127.0.0.1 v6ii.gdt.qq.com
-
-#pkg=ad.xiaomi.com;视频客户端广告
-#--小米视频-MIUI
 127.0.0.1 video.market.xiaomi.com
 127.0.0.1 t1.a.market.xiaomi.com
 127.0.0.1 t2.a.market.xiaomi.com
@@ -75,7 +67,6 @@
 127.0.0.1 xiaomi-dtv.m.cn.miaozhen.com
 127.0.0.1 baiducdncmn3.inter.iqiyi.com
 127.0.0.1 nadvideo2.baidu.com
-#--爱奇艺-Qiyi
 127.0.0.1 api.cupid.iqiyi.com
 127.0.0.1 api.yuedu.iqiyi.com
 127.0.0.1 c.uaa.iqiyi.com
@@ -123,7 +114,6 @@
 127.0.0.1 bdcdncmn-gd.inter.71edge.com
 127.0.0.1 mixer.cupid.ptqy.gitv.tv
 127.0.0.1 msg.ptqy.gitv.tv
-#--腾讯视频-Tencent
 127.0.0.1 aiseet.aa.atianqi.com
 127.0.0.1 livep.l.aiseet.atianqi.com
 127.0.0.1 lives.l.aiseet.atianqi.com
@@ -168,7 +158,6 @@
 127.0.0.1 mcgi.v.qq.com
 127.0.0.1 soup.v.qq.com
 127.0.0.1 bksoup.v.qq.com
-#--搜狐视频-Sohu
 127.0.0.1 sohu-dtv.m.cn.miaozhen.com
 127.0.0.1 agn.aty.snmsohu.aisee.tv
 127.0.0.1 agn.aty.sohu.com
@@ -195,11 +184,9 @@
 127.0.0.1 download.wan.sohu.com
 127.0.0.1 g.jssdk.net
 127.0.0.1 changyan.sohu.com
-#--乐视视频-Letv
 127.0.0.1 n.mark.letv.com
 127.0.0.1 static.app.m.letv.com
 127.0.0.1 test.ark.letv.com
-#--PP视频-PPTV
 127.0.0.1 de.as.cp61.ott.cibntv.net
 127.0.0.1 lives.l.cp81.ott.cibntv.net
 127.0.0.1 mtrace.play.cp81.ott.cibntv.net
@@ -222,7 +209,6 @@
 127.0.0.1 gas.data.pplive.com
 127.0.0.1 plt.data.pplive.com
 127.0.0.1 web.data.pplive.com
-#--芒果TV-Mgtv
 127.0.0.1 mobile.da.mgtv.com
 127.0.0.1 mobile2.da.mgtv.com
 127.0.0.1 ott.da.mgtv.com
@@ -247,7 +233,6 @@
 127.0.0.1 apperr.log.mgtv.com
 127.0.0.1 m2.da.mgtv.com
 127.0.0.1 m.da.mgtv.com
-#--央视影音-CNTV
 127.0.0.1 cws-cctv.conviva.com
 127.0.0.1 galaxy.bjcathay.com
 127.0.0.1 rtas.videocc.net
@@ -258,7 +243,6 @@
 127.0.0.1 cctv.adsunion.com
 127.0.0.1 adstore-1252524079.file.myqcloud.com
 127.0.0.1 adstore-index-1252524079.file.myqcloud.com
-#--风行&酷喵-FunShion
 127.0.0.1 aa0.pub.funshion.com
 127.0.0.1 aa1.pub.funshion.com
 127.0.0.1 adm.funshion.com
@@ -287,7 +271,6 @@
 127.0.0.1 adashx.ut.youku.com
 127.0.0.1 adx-open-service.youku.com
 127.0.0.1 h-adashx.ut.youku.com
-#--咪咕|土豆|人人|凤凰|等等……
 127.0.0.1 ggx.cmvideo.cn
 127.0.0.1 adxserver.ad.cmvideo.cn
 127.0.0.1 openstorage.ad.cmvideo.cn
@@ -341,8 +324,6 @@
 127.0.0.1 adv.fjtv.net
 127.0.0.1 dsa-mfp.fengshows.cn
 127.0.0.1 sdk.cferw.com
-
-#pkg=ad.adwars.com;大圣净化规则
 127.0.0.1 ad.weixin.qq.com
 127.0.0.1 wxa.wxs.qq.com
 127.0.0.1 wxsnsdythumb.wxs.qq.com
@@ -832,8 +813,6 @@
 127.0.0.1 cdp.cloud.unity3d.com
 127.0.0.1 app-measurement.com
 127.0.0.1 beacons.gcp.gvt2.com
-
-#pkg=googleanalysis.mobi;谷歌广告服务
 127.0.0.1 ads.google.com
 127.0.0.1 www.googleadservices.com
 127.0.0.1 google-analytics.com
@@ -1052,8 +1031,6 @@
 127.0.0.1 s1.2mdn.net
 127.0.0.1 media.admob.com
 127.0.0.1 ssl.google-analytics.com
-
-#pkg=baidu.com;百度广告服务
 127.0.0.1 adm.baidu.com
 127.0.0.1 ad.player.baidu.com
 127.0.0.1 adscdn.baidu.com
@@ -1122,8 +1099,6 @@
 127.0.0.1 api.tuisong.baidu.com
 127.0.0.1 sa8.tuisong.baidu.com
 127.0.0.1 cpro.baidustatic.com
-
-#pkg=qq.com;腾讯广告服务
 127.0.0.1 ad.qun.qq.com
 127.0.0.1 adping.qq.com
 127.0.0.1 adpm.app.qq.com
@@ -1202,8 +1177,6 @@
 127.0.0.1 aeventlog.beacon.qq.com
 127.0.0.1 cc.map.qq.com
 127.0.0.1 aegis.qq.com
-
-#pkg=alibaba.com;阿里广告服务
 127.0.0.1 adash.man.aliyuncs.com
 127.0.0.1 cdn-ads.oss-cn-shanghai.aliyuncs.com
 127.0.0.1 ynuf.aliapp.org
@@ -1238,8 +1211,6 @@
 127.0.0.1 adashx4yt.m.taobao.com
 127.0.0.1 h-adashx4yt.ut.taobao.com
 127.0.0.1 umdc.aliapp.org
-
-#pkg=xxx.ad.doubleclick.net;广告联盟
 127.0.0.1 iqiyi.irs01.com
 127.0.0.1 letv.irs01.com
 127.0.0.1 s9.irs03.com

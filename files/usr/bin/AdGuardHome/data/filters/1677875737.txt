@@ -1,7 +1,3 @@
-! Title: LWJ's white list
-! Last modified: 2024-03-11 14:15
-!
-!短链接
 @@goo.gl
 @@bit.ly
 @@sh.st
@@ -11,8 +7,6 @@
 @@||t.cn^$important
 @@||t.co^$important
 @@||t.me^$important
-!
-!google系
 @@||facebook.com^$important
 @@||m.youtube.com^$important
 @@||www.google.com^$important
@@ -35,8 +29,6 @@
 @@||xn--ngstr-lra8j.com^$important
 @@||r3---sn-a5mlrn7r.googlevideo.com^$important
 @@||gvt1.com^$important
-!
-!小米系
 @@m.video.xiaomi.com
 @@||api.account.xiaomi.com^$important
 @@||api.comm.miui.com^$important
@@ -84,15 +76,12 @@
 @@||mobile.controller.duokanbox.com^$important
 @@||o2o.api.xiaomi.com^$important
 @@||tvepg.pandora.xiaomi.com^$important
-#小米视频
 @@||*.video.xiaomi.com^$important
 @@||mivideo.cdn.pandora.xiaomi.com^$important
 @@||v*-dc-ad.ixigua.com^$important
-#锁屏画报正常化
 @@||wallpaper.cdn.pandora.xiaomi.com^$important
 @@||package.wallpaper.cdn.pandora.xiaomi.com.lan^$important
 @@||w.pandora.xiaomi.com^$important
-#应用商店
 @@||sec-cdn.static.xiaomi.net^$important
 @@||fgc0.market.xiaomi.com^$important
 @@||fga0.market.xiaomi.com^$important
@@ -102,14 +91,10 @@
 @@verify.sec.xiaomi.com
 @@||*.market.xiaomi.com^$important
 @@||*.market.mi-img.com^$important
-#主题商店
 @@||f*.market.xiaomi.com^$important
 @@||f*.market.mi-img.com^$important
 @@||market.mi-img.com^$important
-#手机应用列表上传，但是禁用后会导致应用云备份gg
 @@||a0.app.xiaomi.com
-!
-!阿里系
 @@s.click.taobao.com
 @@s.click.tmall.com
 @@||*.alipay.com^
@@ -133,13 +118,9 @@
 @@||alicdn.com^$important
 @@||dj.1688.com^$important
 @@||click.simba.taobao.com^$important
-!阿里云盘登录需要
 @@||acs.m.taobao.com^$important
-#代理游戏
 @@||na61-na62.wagbridge.advertisement.alibabacorp.com.gds.alibabadns.com^$important
 @@||na61-na62.wagbridge.advertisement.alibabacorp.com^$important
-!
-!腾讯系
 @@||btrace.qq.com^$important
 @@||c.y.qq.com^$important
 @@||cdn.ark.qq.com^$important
@@ -173,16 +154,13 @@
 @@||*.imtt.qq.com^$important
 @@||translator.qq.com^$important
 @@||appsupport.qq.com^$important
-#腾讯游戏
 @@||*.lol.qq.com^$important
 @@||lol.qq.com^$important
 @@||lpl.qq.com^$important
 @@||logs.game.qq.com^$important
 @@||cn.ekg.riotgames.com^$important
-#腾讯新闻
 @@||inews.gtimg.com^$important
 @@||view.inews.qq.com^$important
-#其他腾讯系
 @@||res.imtt.qq.com^$important
 @@||recmd.html5.qq.com^$important
 @@||c.pc.qq.com^$important
@@ -196,18 +174,13 @@
 @@||dnet.mb.qq.com^$important
 @@||map.qq.com^$important
 @@||qun.qzone.qq.com^$important
-!qq音乐畅听广告
 @@||adstats.tencentmusic.com^$important
 @@||adsmind.gdtimg.com^$important
 @@||v.gdt.qq.com^$important
-!
-!网易系
 @@||126.net^$important
 @@||163.com^$important
 @@||passport.youdao.com^$important
 @@||mam.netease.com^$important
-!
-!百度系
 @@||c.tieba.baidu.com^$important
 @@||duapps.com^$important
 @@||mbd.baidu.com^$important
@@ -217,8 +190,6 @@
 @@||sp1.baidu.com^$important
 @@||issuecdn.baidupcs.com^$important
 @@||sofire.baidu.com^$important
-!
-!新浪
 @@||free.sinaimg.cn^$important
 @@||simg.sinajs.cn^$important
 @@||sina.cn^$important
@@ -227,17 +198,11 @@
 @@||*.img.mobile.sina.cn^$important
 @@||weibo.cn^$important
 @@||wx2.sinaimg.cn^$important
-!
-!头条系
 @@||snssdk.com^$important
 @@||toutiaocdn.com^$important
 @@||pstatp.com^$important
-!
-!一点资讯
 @@||oppo.yidianzixun.com^$important
 @@||ib11.go2yd.com^$important
-!
-!京东
 @@||gia.jd.com^$important
 @@||wl.jd.com^$important
 @@||mjrpay.jd.com^$important
@@ -245,9 +210,7 @@
 @@||jr.jd.com^$important
 @@||mars.jd.com^$important
 @@||wqsd.jd.com
-!京东一号店
 @@||yhd.com^$important
-!海外
 @@||self.events.data.microsoft.com^$important
 @@||bing.com^$important
 @@||instagram.com^$important
@@ -264,8 +227,6 @@
 @@||dmm.co.jp^$important
 @@||vmware.com^$important
 @@||www.paypalobjects.com^$important
-!
-!国内大站/app
 @@||zkres.myzaker.com^$important
 @@||adidasapp.api.adidas.com.cn^$important
 @@||mobile.appchina.com^$important
@@ -293,8 +254,6 @@
 @@||data.bilibili.com^$important
 @@||jumpluna.58.com^$important
 @@||oss-asq-static.11222.cn^$important
-!
-!其他杂七杂八
 @@||zxcs.me^
 @@*.flyme.cn
 @@guoqiangti.cf
@@ -329,4 +288,3 @@
 @@||pic.mairuan.com^$important
 @@||quapp.shenbabao.com^$important
 @@||dataprajna.net^$important
-

@@ -455,6 +455,10 @@
 ||fanyi.baidu.com/ait/config/cms/list?
 ||3dmgame.com/static/image/common/pc_tg3dm.
 ||fc.3dmgame.com^
+haokan.baidu.com##.page-top-rightinfo-popover
+baidu.com##.invoke-app-san-container
+baidu.com##.invoke-app-floating-tips
+bilibili.com##.is-rcmd > div:only-child
 thwiki.cc###a-carousel
 baidu.com##.index-module_drawerHand__aRhcO
 bilibili.com##.extension-tips
