@@ -173,9 +173,7 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
                "1677875725.txt": "https://www.i-dont-care-about-cookies.eu/abp/",
                "1677875726.txt": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts",
                "1677875727.txt": "https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts",
-               "1677875737.txt": "https://cdn.jsdelivr.net/gh/liwenjie119/adg-rules@master/white.txt",
-               "1677875740.txt": "https://raw.githubusercontent.com/scarletbane/AdGuard-Home-Whitelist/main/whitelist.txt"
-
+               "1677875737.txt": "https://cdn.jsdelivr.net/gh/liwenjie119/adg-rules@master/white.txt"
     }
     dl_tasks: list[SmartDL] = []
     for name, url in filters.items():
