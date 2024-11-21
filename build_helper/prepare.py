@@ -158,6 +158,23 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
             shutil.copytree(os.path.join(openwrt_paths, cfg_names[0]), os.path.join(openwrt_paths, name), symlinks=True)
     openwrts = {name: OpenWrt(os.path.join(openwrt_paths, name), configs[name]["compile"]["openwrt_tag/branch"]) for name in cfg_names}
 
+    # 下载AdGuardHome规则与配置
+    logger.info("下载AdGuardHome规则与配置...")
+    global_files_path = os.path.join(paths.workdir, "files")
+    shutil.copytree(os.path.join(paths.openwrt_k, "files"), global_files_path, symlinks=True)
+    adg_filters_path = os.path.join(global_files_path, "usr", "bin", "AdGuardHome", "data", "filters")
+    os.makedirs(adg_filters_path, exist_ok=True)
+    filters = {"1628750871.txt": "https://anti-ad.net/easylist.txt",
+               "1677875715.txt": "https://easylist-downloads.adblockplus.org/easylist.txt",
+               "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
+    }
+    dl_tasks: list[SmartDL] = []
+    for name, url in filters.items():
+        dl_tasks.append(dl2(url, os.path.join(adg_filters_path, name)))
+    dl_tasks.append(dl2("https://raw.githubusercontent.com/chenmozhijin/AdGuardHome-Rules/main/AdGuardHome-dnslist(by%20cmzj).yaml",
+                     os.path.join(global_files_path, "etc", "AdGuardHome-dnslist(by cmzj).yaml")))
+    wait_dl_tasks(dl_tasks)
+    
     # 获取用户信息
     logger.info("编译者：%s", compiler)
 
