@@ -63,7 +63,7 @@ def setup_env(full: bool = False, clear: bool = False) -> None:
         logger.info("完整更新所有包")
         apt("dist-upgrade")
         # 4.安装编译环境
-        apt("install", "ack", "antlr3", "aria2", "asciidoc", "autoconf", "automake", "autopoint", "b43-fwcutter", "binutils",
+        apt("install", "ack", "antlr3", "asciidoc", "autoconf", "automake", "autopoint", "b43-fwcutter", "binutils",
             "bison", "build-essential", "bzip2", "ccache", "cmake", "cpio", "curl", "device-tree-compiler", "fastjar",
             "flex", "gawk", "gettext", "gcc-multilib", "g++-multilib", "git", "gperf", "haveged", "help2man", "intltool",
             "libc6-dev-i386", "libelf-dev", "libglib2.0-dev", "libgmp3-dev", "libltdl-dev", "libmpc-dev", "libmpfr-dev",
