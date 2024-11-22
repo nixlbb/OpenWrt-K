@@ -292,18 +292,18 @@ def prepare_cfg(config: dict[str, Any],
         case "x86_64":
             adg_arch, clash_arch = "amd64", "linux-amd64"
         case "mipsel":
-            adg_arch, clash_arch = "mipsel", "linux-mipsle-softfloat"
+            adg_arch, clash_arch = "mipsel", None
         case "mips64el":
             adg_arch, clash_arch = "mips64el", None
         case "mips":
-            adg_arch, clash_arch = "mips", "linux-mips-softfloat"
+            adg_arch, clash_arch = "mips", None
         case "mips64":
-            adg_arch, clash_arch = "mips64", "linux-mips64"
+            adg_arch, clash_arch = "mips64", None
         case "arm":
             if version:
                 adg_arch, clash_arch = f"arm{version}", f"linux-arm{version}"
             else:
-                adg_arch, clash_arch = "armv5", "linux-armv5"
+                adg_arch, clash_arch = "armv5", None
         case "aarch64":
             adg_arch, clash_arch = "arm64", "linux-arm64"
         case "powerpc":
