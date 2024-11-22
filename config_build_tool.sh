@@ -255,7 +255,7 @@ function input_parameters() {
     if [ "$(grep -c "^timezone=" $TMPDIR/openwrtext.config)" -eq '1' ];then
         timezone=$(grep "^timezone=" $TMPDIR/openwrtext.config|sed -e "s/timezone=//")
     else
-        timezone="CST-8"
+        timezone="Etc/GMT-8"
     fi
     if [ "$(grep -c "^zonename=" $TMPDIR/openwrtext.config)" -eq '1' ];then
         zonename=$(grep "^zonename=" $TMPDIR/openwrtext.config|sed -e "s/zonename=//")
@@ -1142,7 +1142,7 @@ openwrt_extension_config() {
         2)
              # 修改时区
             while true; do
-                NEW_TIMEZONE=$(whiptail --title "修改时区" --inputbox "默认为东八区(CST-8),中国地区无需修改" 10 60 $timezone 3>&1 1>&2 2>&3)
+                NEW_TIMEZONE=$(whiptail --title "修改时区" --inputbox "默认为东八区(Etc/GMT-8),中国地区无需修改" 10 60 $timezone 3>&1 1>&2 2>&3)
                 exitstatus=$?
                 if [ $exitstatus != 0 ]; then
                     echo "你选择了退出"
