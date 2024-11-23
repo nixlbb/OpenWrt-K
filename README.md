@@ -1,10 +1,10 @@
 # OpenWrt-K
-[原项目地址](https://github.com/chenmozhijin/OpenWrt-K):
+[原项目地址]:https://github.com/chenmozhijin/OpenWrt-K
 > OpenWRT软件包与固件自动云编译
 
-### 内置功能
 
-已内置以下软件包：
+
+### 已内置以下软件包：
 
 1. LuCI插件：  
   “✓”[luci-app-adguardhome](https://github.com/chenmozhijin/luci-app-adguardhome) :AdGuardHome广告屏蔽工具的luci设置界面  
@@ -31,39 +31,20 @@
 
     > + 以上软件包都在生成在Releases的package.zip文件中，可安装使用。
 
-2. 网卡驱动：  
-  kmod-8139cp  
-  kmod-8139too  
-  kmod-alx  
-  kmod-amazon-ena  
-  kmod-amd-xgbe  
-  kmod-bnx2  
-  kmod-bnx2x  
+2. 网卡驱动：   
   kmod-e1000  
   kmod-e1000e  
-  kmod-forcedeth  
-  kmod-i40e  
-  kmod-iavf  
   kmod-igb  
   kmod-igbvf  
   kmod-igc  
   kmod-ixgbe  
-  kmod-libphy  
   kmod-macvlan  
-  kmod-mii  
-  kmod-mlx4-core  
-  kmod-mlx5-core  
-  kmod-net-selftests  
-  kmod-pcnet32  
-  kmod-phy-ax88796b  
   kmod-phy-realtek  
   kmod-phy-smsc  
   [kmod-r8125](https://github.com/sbwml/package_kernel_r8125)  
   kmod-r8152  
   kmod-r8168  
-  kmod-tg3  
-  kmod-tulip  
-  kmod-via-velocity  
+  kmod-tg3     
   kmod-vmxnet3
 
  感谢以下项目与各位制作软件包大佬的付出
