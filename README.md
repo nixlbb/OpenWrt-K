@@ -1,8 +1,7 @@
 # OpenWrt-K
-[原项目地址]:https://github.com/chenmozhijin/OpenWrt-K
+[原项目地址](https://github.com/chenmozhijin/OpenWrt-K):
+
 > OpenWRT软件包与固件自动云编译
-
-
 
 ### 已内置以下软件包：
 
