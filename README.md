@@ -18,10 +18,7 @@
 1. 其他部分软件包：  
   “✓”ethtool-full：网卡工具用于查询及设置网卡参数  
   “✓”sudo：sudo命令支持  
-  “✓”htop：系统监控与进程管理软件    
-  “✓”bc：一个命令行计算器  
-  “✓”pciutils：PCI 设备配置工具  
-  “✓”usbutils：USB 设备列出工具  
+  “✓”htop：系统监控与进程管理软件     
 
 1. LuCI主题：[Argon](https://github.com/jerrykuku/luci-theme-argon)
 
