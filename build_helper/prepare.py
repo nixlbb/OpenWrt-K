@@ -171,6 +171,7 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     dl_tasks: list[SmartDL] = []
     for name, url in filters.items():
         dl_tasks.append(dl2(url, os.path.join(adg_filters_path, name)))
+
     wait_dl_tasks(dl_tasks)
     
     # 获取用户信息
