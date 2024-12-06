@@ -97,7 +97,7 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     # clone拓展软件源码
     logger.info("开始克隆拓展软件源码...")
     to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", ""),
-                                       ("https://github.com/chenmozhijin/turboacc", "package"),
+                                       ("https://github.com/nixlbb/turboacc", "package"),
                                        *[(pkg["REPOSITORIE"], pkg["BRANCH"]) for config in configs.values() for pkg in config["extpackages"].values()],
                                        *[("https://github.com/sbwml/packages_lang_golang",
                                           config["openwrtext"]["golang_version"]) for config in configs.values()]}
@@ -169,6 +169,8 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
                "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
     }
     dl_tasks: list[SmartDL] = []
+    for name, url in filters.items():
+        dl_tasks.append(dl2(url, os.path.join(adg_filters_path, name)))
     wait_dl_tasks(dl_tasks)
     
     # 获取用户信息
@@ -219,7 +221,7 @@ def prepare_cfg(config: dict[str, Any],
     config["openwrt"] = openwrt.get_diff_config()
 
     # 添加turboacc补丁
-    turboacc_dir = os.path.join(cloned_repos[("https://github.com/chenmozhijin/turboacc", "package")])
+    turboacc_dir = os.path.join(cloned_repos[("https://github.com/nixlbb/turboacc", "package")])
     kernel_version = openwrt.get_kernel_version()
     enable_sfe = (openwrt.get_package_config("kmod-shortcut-fe") in ("y", "m") or
                openwrt.get_package_config("kmod-shortcut-fe-drv") in ("y", "m") or
