@@ -168,6 +168,8 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
                "1677875715.txt": "https://easylist-downloads.adblockplus.org/easylist.txt",
                "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
     }
+    dl_tasks: list[SmartDL] = []
+    wait_dl_tasks(dl_tasks)
     
     # 获取用户信息
     logger.info("编译者：%s", compiler)
