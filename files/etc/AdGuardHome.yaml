@@ -14,7 +14,7 @@ language: zh-cn
 theme: auto
 dns:
   bind_hosts:
-    - 0.0.0.0
+    - 127.0.0.1
   port: 1745
   anonymize_client_ip: false
   ratelimit: 0
@@ -24,14 +24,12 @@ dns:
   refuse_any: false
   upstream_dns:
     - 119.29.29.29
-    - 223.5.5.5
     - 114.114.114.114
   upstream_dns_file: ""
   bootstrap_dns:
     - 119.29.29.29
-    - 223.5.5.5
     - 114.114.114.114
-  fallback_dns: []
+  fallback_dns: []a
   upstream_mode: parallel
   fastest_timeout: 1s
   allowed_clients: []
@@ -48,7 +46,7 @@ dns:
   cache_ttl_max: 0
   cache_optimistic: false
   bogus_nxdomain: []
-  aaaa_disabled: false
+  aaaa_disabled: true
   enable_dnssec: false
   edns_client_subnet:
     custom_ip: ""
@@ -61,7 +59,7 @@ dns:
   bootstrap_prefer_ipv6: false
   upstream_timeout: 10s
   private_networks: []
-  use_private_ptr_resolvers: true
+  use_private_ptr_resolvers: false
   local_ptr_upstreams: []
   use_dns64: false
   dns64_prefixes: []
@@ -180,7 +178,7 @@ filtering:
     pixabay: true
     yandex: true
     youtube: true
-  blocking_mode: default
+  blocking_mode: nxdomain
   parental_block_host: family-block.dns.adguard.com
   safebrowsing_block_host: standard-block.dns.adguard.com
   rewrites: []
@@ -200,7 +198,7 @@ clients:
   runtime_sources:
     whois: true
     arp: true
-    rdns: true
+    rdns: false
     dhcp: true
     hosts: true
   persistent: []
