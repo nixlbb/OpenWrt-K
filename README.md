@@ -68,10 +68,10 @@
   luci-app-webadmin：Web 管理页面设置  
   #[luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
   luci-app-wol：网络唤醒  
-  #luci-app-zerotier：ZeroTier虚拟局域网
-  #luci-app-qbittorrent：qBittorrent-Enhanced-Edition的luci设置界面
-  #luci-app-sqm：Smart Queue Management (SQM) QoS
-  luci-app-vlmcsd：VLMCSd KMS 激活工具
+  #luci-app-zerotier：ZeroTier虚拟局域网  
+  #luci-app-qbittorrent：qBittorrent-Enhanced-Edition的luci设置界面  
+  #luci-app-sqm：Smart Queue Management (SQM) QoS  
+  luci-app-vlmcsd：VLMCSd KMS 激活工具  
 
 1. 其他部分软件包：  
   ethtool-full：网卡工具用于查询及设置网卡参数  
