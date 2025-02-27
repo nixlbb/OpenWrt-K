@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2024 沉默の金 <cmzj@cmzj.org>
+# SPDX-FileCopyrightText: Copyright (c) 2024-2025 沉默の金 <cmzj@cmzj.org>
 # SPDX-License-Identifier: MIT
 import gzip
 import json
@@ -8,22 +8,19 @@ import shutil
 import tarfile
 from datetime import datetime, timedelta, timezone
 from multiprocessing.pool import Pool
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import pygit2
 
+from .utils.downloader import DLTask, dl2, wait_dl_tasks
 from .utils.error import ConfigError, ConfigParseError
 from .utils.logger import logger
-from .utils.network import dl2, get_gh_repo_last_releases, request_get, wait_dl_tasks
+from .utils.network import get_gh_repo_last_releases, request_get
 from .utils.openwrt import OpenWrt
 from .utils.paths import paths
 from .utils.repo import compiler, get_release_suffix, user_repo
 from .utils.upload import uploader
 from .utils.utils import parse_config
-
-if TYPE_CHECKING:
-    from pySmartDL import SmartDL
-
 
 
 def parse_configs() -> dict[str, dict[str, Any]]:
@@ -97,7 +94,9 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     # clone拓展软件源码
     logger.info("开始克隆拓展软件源码...")
     to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", ""),
-                                       ("https://github.com/nixlbb/turboacc", "package"),
+                                       ("https://github.com/chenmozhijin/turboacc", "package"),
+                                       ("https://github.com/pymumu/openwrt-smartdns", "master"),
+                                       ("https://github.com/pymumu/luci-app-smartdns", "master"),
                                        *[(pkg["REPOSITORIE"], pkg["BRANCH"]) for config in configs.values() for pkg in config["extpackages"].values()],
                                        *[("https://github.com/sbwml/packages_lang_golang",
                                           config["openwrtext"]["golang_version"]) for config in configs.values()]}
@@ -164,14 +163,34 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     shutil.copytree(os.path.join(paths.openwrt_k, "files"), global_files_path, symlinks=True)
     adg_filters_path = os.path.join(global_files_path, "usr", "bin", "AdGuardHome", "data", "filters")
     os.makedirs(adg_filters_path, exist_ok=True)
-    filters = {"1628750871.txt": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-easylist.txt",
+    filters = {"1628750870.txt": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+               "1628750871.txt": "https://anti-ad.net/easylist.txt",
                "1677875715.txt": "https://easylist-downloads.adblockplus.org/easylist.txt",
-               "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
+               "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+               "1677875717.txt": "https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt",
+               "1677875718.txt": "https://raw.githubusercontent.com/zsakvo/AdGuard-Custom-Rule/master/rule/zhihu-strict.txt",
+               "1677875720.txt": "https://gist.githubusercontent.com/Ewpratten/a25ae63a7200c02c850fede2f32453cf/raw/b9318009399b99e822515d388b8458557d828c37/hosts-yt-ads",
+               "1677875724.txt": "https://raw.githubusercontent.com/banbendalao/ADgk/master/ADgk.txt",
+               "1677875725.txt": "https://www.i-dont-care-about-cookies.eu/abp/",
+               "1677875726.txt": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts",
+               "1677875727.txt": "https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts",
+               "1677875728.txt": "https://winhelp2002.mvps.org/hosts.txt",
+               "1677875733.txt": "https://raw.githubusercontent.com/hl2guide/Filterlist-for-AdGuard/master/filter_whitelist.txt",
+               "1677875734.txt": "https://raw.githubusercontent.com/hg1978/AdGuard-Home-Whitelist/master/whitelist.txt",
+               "1677875735.txt": "https://raw.githubusercontent.com/mmotti/adguard-home-filters/master/whitelist.txt",
+               "1677875737.txt": "https://raw.githubusercontent.com/liwenjie119/adg-rules/master/white.txt",
+               "1677875739.txt": "https://raw.githubusercontent.com/JamesDamp/AdGuard-Home---Personal-Whitelist/master/AdGuardHome-Whitelist.txt",
+               #"1677875740.txt": "https://raw.githubusercontent.com/scarletbane/AdGuard-Home-Whitelist/main/whitelist.txt"
     }
-    dl_tasks: list[SmartDL] = []
-    
+    dl_tasks: list[DLTask] = []
+    for name, url in filters.items():
+        dl_tasks.append(dl2(url, os.path.join(adg_filters_path, name)))
+
+    dl_tasks.append(dl2("https://raw.githubusercontent.com/chenmozhijin/AdGuardHome-Rules/main/AdGuardHome-dnslist(by%20cmzj).yaml",
+                     os.path.join(global_files_path, "etc", "AdGuardHome-dnslist(by cmzj).yaml")))
+
     wait_dl_tasks(dl_tasks)
-    
+
     # 获取用户信息
     logger.info("编译者：%s", compiler)
 
@@ -194,6 +213,19 @@ def prepare_cfg(config: dict[str, Any],
 
     logger.info("%s开始更新feeds...", cfg_name)
     openwrt.feed_update()
+
+    logger.info("%s开始更新netdata、smartdns...", cfg_name)
+    # 更新netdata
+    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), ignore_errors=True)
+    shutil.copytree(os.path.join(cloned_repos[("https://github.com/immortalwrt/packages", "")], "admin", "netdata"),
+                        os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), symlinks=True)
+    # 更新smartdns
+    shutil.rmtree(os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), ignore_errors=True)
+    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), ignore_errors=True)
+    shutil.copytree(cloned_repos[("https://github.com/pymumu/luci-app-smartdns", "master")],
+                    os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), symlinks=True)
+    shutil.copytree(cloned_repos[("https://github.com/pymumu/openwrt-smartdns", "master")],
+                    os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), symlinks=True)
 
     logger.info("%s处理软件包...", cfg_name)
     for pkg_name, pkg in config["extpackages"].items():
@@ -220,7 +252,7 @@ def prepare_cfg(config: dict[str, Any],
     config["openwrt"] = openwrt.get_diff_config()
 
     # 添加turboacc补丁
-    turboacc_dir = os.path.join(cloned_repos[("https://github.com/nixlbb/turboacc", "package")])
+    turboacc_dir = os.path.join(cloned_repos[("https://github.com/chenmozhijin/turboacc", "package")])
     kernel_version = openwrt.get_kernel_version()
     enable_sfe = (openwrt.get_package_config("kmod-shortcut-fe") in ("y", "m") or
                openwrt.get_package_config("kmod-shortcut-fe-drv") in ("y", "m") or
@@ -289,18 +321,18 @@ def prepare_cfg(config: dict[str, Any],
         case "x86_64":
             adg_arch, clash_arch = "amd64", "linux-amd64"
         case "mipsel":
-            adg_arch, clash_arch = "mipsel", None
+            adg_arch, clash_arch = "mipsel", "linux-mipsle-softfloat"
         case "mips64el":
             adg_arch, clash_arch = "mips64el", None
         case "mips":
-            adg_arch, clash_arch = "mips", None
+            adg_arch, clash_arch = "mips", "linux-mips-softfloat"
         case "mips64":
-            adg_arch, clash_arch = "mips64", None
+            adg_arch, clash_arch = "mips64", "linux-mips64"
         case "arm":
             if version:
                 adg_arch, clash_arch = f"arm{version}", f"linux-arm{version}"
             else:
-                adg_arch, clash_arch = "armv5", None
+                adg_arch, clash_arch = "armv5", "linux-armv5"
         case "aarch64":
             adg_arch, clash_arch = "arm64", "linux-arm64"
         case "powerpc":
@@ -311,7 +343,7 @@ def prepare_cfg(config: dict[str, Any],
             adg_arch, clash_arch = None, None
 
     tmpdir = paths.get_tmpdir()
-    dl_tasks: list[SmartDL] = []
+    dl_tasks: list[DLTask] = []
     if adg_arch and openwrt.get_package_config("luci-app-adguardhome") == "y":
         logger.info("%s下载架构为%s的AdGuardHome核心", cfg_name, adg_arch)
         releases = get_gh_repo_last_releases("AdguardTeam/AdGuardHome")
@@ -323,6 +355,18 @@ def prepare_cfg(config: dict[str, Any],
             else:
                 logger.error("未找到可用的AdGuardHome二进制文件")
 
+    if clash_arch and openwrt.get_package_config("luci-app-openclash") == "y":
+        logger.info("%s下载架构为%s的OpenClash核心", cfg_name, clash_arch)
+        latest_versions = request_get("https://raw.githubusercontent.com/vernesong/OpenClash/core/master/core_version")
+        tun_v = latest_versions.splitlines()[1] if latest_versions else None
+        if tun_v:
+            dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/premium/clash-{clash_arch}-{tun_v}.gz",
+                                os.path.join(tmpdir.name, "clash_tun.gz")))
+        dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-{clash_arch}.tar.gz",
+                                os.path.join(tmpdir.name, "clash_meta.tar.gz")))
+        dl_tasks.append(dl2(f"https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-{clash_arch}.tar.gz",
+                                os.path.join(tmpdir.name, "clash.tar.gz")))
+
     wait_dl_tasks(dl_tasks)
     # 解压
     if os.path.isfile(os.path.join(tmpdir.name, "AdGuardHome.tar.gz")):
@@ -331,8 +375,46 @@ def prepare_cfg(config: dict[str, Any],
                 with open(os.path.join(files_path, "usr", "bin", "AdGuardHome", "AdGuardHome"), "wb") as f:
                     f.write(file.read())
                 os.chmod(os.path.join(files_path, "usr", "bin", "AdGuardHome", "AdGuardHome"), 0o755)  # noqa: S103
-                
+
+    clash_core_path = os.path.join(files_path, "etc", "openclash", "core")
+    if not os.path.isdir(clash_core_path):
+        os.makedirs(clash_core_path)
+    if os.path.isfile(os.path.join(tmpdir.name, "clash_tun.gz")):
+        with gzip.open(os.path.join(tmpdir.name, "clash_tun.gz"), 'rb') as f_in, open(os.path.join(clash_core_path, "clash_tun"), 'wb') as f_out:
+            shutil.copyfileobj(f_in, f_out)
+        os.chmod(os.path.join(clash_core_path, "clash_tun"), 0o755)  # noqa: S103
+
+    if os.path.isfile(os.path.join(tmpdir.name, "clash_meta.tar.gz")):
+        with tarfile.open(os.path.join(tmpdir.name, "clash_meta.tar.gz"), "r:gz") as tar:
+            if file := tar.extractfile("clash"):
+                with open(os.path.join(clash_core_path, "clash_meta"), "wb") as f:
+                    f.write(file.read())
+                os.chmod(os.path.join(clash_core_path, "clash_meta"), 0o755)  # noqa: S103
+
+    if os.path.isfile(os.path.join(tmpdir.name, "clash.tar.gz")):
+        with tarfile.open(os.path.join(tmpdir.name, "clash.tar.gz"), "r:gz") as tar:
+            if file := tar.extractfile("clash"):
+                with open(os.path.join(clash_core_path, "clash"), "wb") as f:
+                    f.write(file.read())
+                os.chmod(os.path.join(clash_core_path, "clash"), 0o755)  # noqa: S103
+
     tmpdir.cleanup()
+
+    # 获取bt_trackers
+    bt_tracker = request_get("https://github.com/XIU2/TrackersListCollection/raw/master/all_aria2.txt")
+    # 替换信息
+    with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), encoding="utf-8") as f:
+        content = f.read()
+    with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), "w", encoding="utf-8") as f:
+        for line in content.splitlines():
+            if line.startswith("  uci set aria2.main.bt_tracker="):
+                f.write(f"  uci set aria2.main.bt_tracker='{bt_tracker}'\n")
+            elif line.startswith("uci set network.lan.ipaddr="):
+                f.write(f"uci set network.lan.ipaddr='{config["openwrtext"]["ipaddr"]}'\n")
+            elif "Compiled by 沉默の金" in line:
+                f.write(line.replace("Compiled by 沉默の金", f"Compiled by {compiler}") + "\n")
+            else:
+                f.write(line + "\n")
 
     logger.info("%s其他处理", cfg_name)
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), encoding="utf-8") as f:
@@ -340,7 +422,7 @@ def prepare_cfg(config: dict[str, Any],
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), "w", encoding="utf-8") as f:
         for line in content.splitlines():
             if "set system.@system[-1].hostname='OpenWrt'" in line:
-                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='Home'") + "\n")
+                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='OpenWrt-k'") + "\n")
             elif "set system.@system[-1].timezone='UTC'" in line:
                 f.write(line.replace("set system.@system[-1].timezone='UTC'",
                                      f"set system.@system[-1].timezone='{config['openwrtext']['timezone']}'") +
