@@ -49,28 +49,28 @@
 1. LuCI插件：  
   [luci-app-adguardhome](https://github.com/chenmozhijin/luci-app-adguardhome) :AdGuardHome广告屏蔽工具的luci设置界面  
   [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config):Argon 主题设置  
-  # luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
+  #luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
   [luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   luci-app-fileassistant：文件助手  
   luci-app-firewall：防火墙  
-  # luci-app-netdata：[Netdata](https://github.com/netdata/netdata) 实时监控  
-  # [luci-app-netspeedtest](https://github.com/sirpdboy/netspeedtest)：网速测试  
-  # luci-app-nlbwmon：网络带宽监视器  
+  #luci-app-netdata：[Netdata](https://github.com/netdata/netdata) 实时监控
+  #[luci-app-netspeedtest](https://github.com/sirpdboy/netspeedtest)：网速测试  
+  #luci-app-nlbwmon：网络带宽监视器  
   luci-app-opkg：软件包  
   [luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
   luci-app-samba4：samba网络共享  
-  # [luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
-  # [luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
+  #[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
+  #[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
   luci-app-ttyd：ttyd 终端  
   [luci-app-turboacc](https://github.com/chenmozhijin/turboacc)：Turbo ACC 网络加速  
   luci-app-upnp：通用即插即用（UPnP）  
-  # luci-app-usb-printer：USB 打印服务器   
+  #luci-app-usb-printer：USB 打印服务器   
   luci-app-webadmin：Web 管理页面设置  
-  # [luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
+  #[luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
   luci-app-wol：网络唤醒  
-  # luci-app-zerotier：ZeroTier虚拟局域网
-  # luci-app-qbittorrent：qBittorrent-Enhanced-Edition的luci设置界面
-  # luci-app-sqm：Smart Queue Management (SQM) QoS
+  #luci-app-zerotier：ZeroTier虚拟局域网
+  #luci-app-qbittorrent：qBittorrent-Enhanced-Edition的luci设置界面
+  #luci-app-sqm：Smart Queue Management (SQM) QoS
   luci-app-vlmcsd：VLMCSd KMS 激活工具
 
 1. 其他部分软件包：  
@@ -79,7 +79,7 @@
   htop：系统监控与进程管理软件    
   cfdisk：磁盘分区工具  
   bc：一个命令行计算器  
-  # coremark：cpu跑分测试  
+  #coremark：cpu跑分测试  
   pciutils：PCI 设备配置工具  
   usbutils：USB 设备列出工具  
 
