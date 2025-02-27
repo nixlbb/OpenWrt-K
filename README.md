@@ -67,7 +67,7 @@
   #luci-app-usb-printer：USB 打印服务器   
   luci-app-webadmin：Web 管理页面设置  
   #[luci-app-wechatpush](https://github.com/tty228/luci-app-wechatpush)：微信推送  
-  luci-app-wol：网络唤醒  
+  #luci-app-wol：网络唤醒  
   #luci-app-zerotier：ZeroTier虚拟局域网  
   #luci-app-qbittorrent：qBittorrent-Enhanced-Edition的luci设置界面  
   #luci-app-sqm：Smart Queue Management (SQM) QoS  
