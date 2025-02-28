@@ -95,8 +95,6 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
     logger.info("开始克隆拓展软件源码...")
     to_clone: set[tuple[str, str]] = {("https://github.com/immortalwrt/packages", ""),
                                        ("https://github.com/chenmozhijin/turboacc", "package"),
-                                       ("https://github.com/pymumu/openwrt-smartdns", "master"),
-                                       ("https://github.com/pymumu/luci-app-smartdns", "master"),
                                        *[(pkg["REPOSITORIE"], pkg["BRANCH"]) for config in configs.values() for pkg in config["extpackages"].values()],
                                        *[("https://github.com/sbwml/packages_lang_golang",
                                           config["openwrtext"]["golang_version"]) for config in configs.values()]}
@@ -213,19 +211,6 @@ def prepare_cfg(config: dict[str, Any],
 
     logger.info("%s开始更新feeds...", cfg_name)
     openwrt.feed_update()
-
-    logger.info("%s开始更新netdata、smartdns...", cfg_name)
-    # 更新netdata
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), ignore_errors=True)
-    shutil.copytree(os.path.join(cloned_repos[("https://github.com/immortalwrt/packages", "")], "admin", "netdata"),
-                        os.path.join(openwrt.path, "feeds", "packages", "admin", "netdata"), symlinks=True)
-    # 更新smartdns
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), ignore_errors=True)
-    shutil.rmtree(os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), ignore_errors=True)
-    shutil.copytree(cloned_repos[("https://github.com/pymumu/luci-app-smartdns", "master")],
-                    os.path.join(openwrt.path, "feeds", "luci", "applications", "luci-app-smartdns"), symlinks=True)
-    shutil.copytree(cloned_repos[("https://github.com/pymumu/openwrt-smartdns", "master")],
-                    os.path.join(openwrt.path, "feeds", "packages", "net", "smartdns"), symlinks=True)
 
     logger.info("%s处理软件包...", cfg_name)
     for pkg_name, pkg in config["extpackages"].items():
@@ -422,7 +407,7 @@ def prepare_cfg(config: dict[str, Any],
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), "w", encoding="utf-8") as f:
         for line in content.splitlines():
             if "set system.@system[-1].hostname='OpenWrt'" in line:
-                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='OpenWrt-k'") + "\n")
+                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='Home'") + "\n")
             elif "set system.@system[-1].timezone='UTC'" in line:
                 f.write(line.replace("set system.@system[-1].timezone='UTC'",
                                      f"set system.@system[-1].timezone='{config['openwrtext']['timezone']}'") +
