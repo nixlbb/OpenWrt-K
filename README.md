@@ -88,8 +88,8 @@
     > + 以上软件包都在生成在Releases的package.zip文件中，可安装使用。
 
 2. 网卡驱动：  
-  kmod-8139cp  
-  kmod-8139too  
+  #kmod-8139cp  
+  #kmod-8139too  
   kmod-alx  
   kmod-amazon-ena  
   kmod-amd-xgbe  
