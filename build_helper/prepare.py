@@ -153,12 +153,6 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
         for name in cfg_names[1:]:
             shutil.copytree(os.path.join(openwrt_paths, cfg_names[0]), os.path.join(openwrt_paths, name), symlinks=True)
     openwrts = {name: OpenWrt(os.path.join(openwrt_paths, name), configs[name]["compile"]["openwrt_tag/branch"]) for name in cfg_names}
-    }
-    dl_tasks: list[DLTask] = []
-    for name, url in filters.items():
-        dl_tasks.append(dl2(url, os.path.join(adg_filters_path, name)))
-
-    wait_dl_tasks(dl_tasks)
 
     # 获取用户信息
     logger.info("编译者：%s", compiler)
