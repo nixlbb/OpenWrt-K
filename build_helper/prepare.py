@@ -154,10 +154,40 @@ def prepare(configs: dict[str, dict[str, Any]]) -> None:
             shutil.copytree(os.path.join(openwrt_paths, cfg_names[0]), os.path.join(openwrt_paths, name), symlinks=True)
     openwrts = {name: OpenWrt(os.path.join(openwrt_paths, name), configs[name]["compile"]["openwrt_tag/branch"]) for name in cfg_names}
 
+    # 下载AdGuardHome规则与配置
+    logger.info("下载AdGuardHome规则与配置...")
+    global_files_path = os.path.join(paths.workdir, "files")
+    shutil.copytree(os.path.join(paths.openwrt_k, "files"), global_files_path, symlinks=True)
+    adg_filters_path = os.path.join(global_files_path, "usr", "bin", "AdGuardHome", "data", "filters")
+    os.makedirs(adg_filters_path, exist_ok=True)
+    filters = {"1628750870.txt": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+               "1628750871.txt": "https://anti-ad.net/easylist.txt",
+               "1677875715.txt": "https://easylist-downloads.adblockplus.org/easylist.txt",
+               "1677875716.txt": "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+               "1677875717.txt": "https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt",
+               "1677875718.txt": "https://raw.githubusercontent.com/zsakvo/AdGuard-Custom-Rule/master/rule/zhihu-strict.txt",
+               "1677875720.txt": "https://gist.githubusercontent.com/Ewpratten/a25ae63a7200c02c850fede2f32453cf/raw/b9318009399b99e822515d388b8458557d828c37/hosts-yt-ads",
+               "1677875724.txt": "https://raw.githubusercontent.com/banbendalao/ADgk/master/ADgk.txt",
+               "1677875725.txt": "https://www.i-dont-care-about-cookies.eu/abp/",
+               "1677875726.txt": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts",
+               "1677875727.txt": "https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts",
+               "1677875728.txt": "https://winhelp2002.mvps.org/hosts.txt",
+               "1677875733.txt": "https://raw.githubusercontent.com/hl2guide/Filterlist-for-AdGuard/master/filter_whitelist.txt",
+               "1677875734.txt": "https://raw.githubusercontent.com/hg1978/AdGuard-Home-Whitelist/master/whitelist.txt",
+               "1677875735.txt": "https://raw.githubusercontent.com/mmotti/adguard-home-filters/master/whitelist.txt",
+               "1677875737.txt": "https://raw.githubusercontent.com/liwenjie119/adg-rules/master/white.txt",
+               "1677875739.txt": "https://raw.githubusercontent.com/JamesDamp/AdGuard-Home---Personal-Whitelist/master/AdGuardHome-Whitelist.txt",
+               #"1677875740.txt": "https://raw.githubusercontent.com/scarletbane/AdGuard-Home-Whitelist/main/whitelist.txt"
+    }
+    wait_dl_tasks(dl_tasks)
+
     # 获取用户信息
     logger.info("编译者：%s", compiler)
 
     tasks = []
+    for cfg_name, openwrt in openwrts.items():
+        config = configs[cfg_name]
+        tasks.append((config, cfg_name, openwrt, cloned_repos, global_files_path))
     with Pool(len(cfg_names)) as p:
         for cfg_name, config, tar_path in p.starmap(prepare_cfg, tasks):
             configs[cfg_name] = config
@@ -191,12 +221,6 @@ def prepare_cfg(config: dict[str, Any],
     shutil.rmtree(golang_path)
     shutil.copytree(cloned_repos[("https://github.com/sbwml/packages_lang_golang", config["openwrtext"]["golang_version"])], golang_path)
     openwrt.feed_install()
-    # 修复问题
-    openwrt.fix_problems()
-    # 应用配置
-    openwrt.apply_config(config["openwrt"])
-    openwrt.make_defconfig()
-    config["openwrt"] = openwrt.get_diff_config()
 
     logger.info("%s准备自定义文件...", cfg_name)
     files_path = os.path.join(openwrt.path, "files")
@@ -288,7 +312,7 @@ def prepare_cfg(config: dict[str, Any],
                 os.chmod(os.path.join(clash_core_path, "clash"), 0o755)  # noqa: S103
 
     tmpdir.cleanup()
-    
+
     # 替换信息
     with open(os.path.join(files_path, "etc", "uci-defaults", "zzz-chenmozhijin"), encoding="utf-8") as f:
         content = f.read()
@@ -309,7 +333,7 @@ def prepare_cfg(config: dict[str, Any],
     with open(os.path.join(openwrt.path, "package", "base-files", "files", "bin", "config_generate"), "w", encoding="utf-8") as f:
         for line in content.splitlines():
             if "set system.@system[-1].hostname='OpenWrt'" in line:
-                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='Home'") + "\n")
+                f.write(line.replace("set system.@system[-1].hostname='OpenWrt'", "set system.@system[-1].hostname='OpenWrt-k'") + "\n")
             elif "set system.@system[-1].timezone='UTC'" in line:
                 f.write(line.replace("set system.@system[-1].timezone='UTC'",
                                      f"set system.@system[-1].timezone='{config['openwrtext']['timezone']}'") +
