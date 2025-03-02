@@ -114,9 +114,9 @@
   #kmod-phy-ax88796b  
   kmod-phy-realtek  
   kmod-phy-smsc  
-  [kmod-r8125](https://github.com/sbwml/package_kernel_r8125)  
+  #[kmod-r8125](https://github.com/sbwml/package_kernel_r8125)  
   kmod-r8152  
-  kmod-r8168  
+  #kmod-r8168  
   kmod-tg3  
   #kmod-tulip  
   #kmod-via-velocity  
