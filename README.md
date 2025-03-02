@@ -107,19 +107,19 @@
   kmod-libphy  
   kmod-macvlan  
   kmod-mii  
-  kmod-mlx4-core  
-  kmod-mlx5-core  
-  kmod-net-selftests  
-  kmod-pcnet32  
-  kmod-phy-ax88796b  
+  #kmod-mlx4-core  
+  #kmod-mlx5-core  
+  #kmod-net-selftests  
+  #kmod-pcnet32  
+  #kmod-phy-ax88796b  
   kmod-phy-realtek  
   kmod-phy-smsc  
   [kmod-r8125](https://github.com/sbwml/package_kernel_r8125)  
   kmod-r8152  
   kmod-r8168  
   kmod-tg3  
-  kmod-tulip  
-  kmod-via-velocity  
+  #kmod-tulip  
+  #kmod-via-velocity  
   kmod-vmxnet3
 
 ### 固件预览
