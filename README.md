@@ -48,7 +48,7 @@
 
 1. LuCI插件：  
   [luci-app-adguardhome](https://github.com/chenmozhijin/luci-app-adguardhome) :AdGuardHome广告屏蔽工具的luci设置界面  
-  [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config):Argon 主题设置  
+  #[luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config):Argon 主题设置  
   #luci-app-cifs-mount：SMB/CIFS 网络挂载共享客户端  
   [luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   luci-app-fileassistant：文件助手  
@@ -61,7 +61,7 @@
   luci-app-samba4：samba网络共享  
   #[luci-app-smartdns](https://github.com/pymumu/luci-app-smartdns)：SmartDNS 服务器  
   #[luci-app-socat](https://github.com/chenmozhijin/luci-app-socat)：Socat网络工具  
-  luci-app-ttyd：ttyd 终端  
+  #luci-app-ttyd：ttyd 终端  
   #[luci-app-turboacc](https://github.com/chenmozhijin/turboacc)：Turbo ACC 网络加速  
   luci-app-upnp：通用即插即用（UPnP）  
   #luci-app-usb-printer：USB 打印服务器   
