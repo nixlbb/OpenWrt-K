@@ -15,7 +15,6 @@
 
 1. LuCI插件：  
   [luci-app-adguardhome](https://github.com/chenmozhijin/luci-app-adguardhome) :AdGuardHome广告屏蔽工具的luci设置界面  
-  [luci-app-diskman](https://github.com/lisaac/luci-app-diskman)：DiskMan 磁盘管理  
   luci-app-firewall：防火墙  
   luci-app-opkg：软件包  
   [luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
