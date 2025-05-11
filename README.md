@@ -18,7 +18,6 @@
   luci-app-firewall：防火墙  
   luci-app-opkg：软件包  
   [luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
-  luci-app-samba4：samba网络共享  
   luci-app-upnp：通用即插即用（UPnP）  
   luci-app-webadmin：Web 管理页面设置  
 
