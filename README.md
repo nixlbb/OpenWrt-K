@@ -29,27 +29,8 @@
     > + 以上软件包都在生成在Releases的package.zip文件中，可安装使用。
 
 2. 网卡驱动： 
-  kmod-alx  
-  kmod-amazon-ena  
-  kmod-amd-xgbe  
-  kmod-bnx2  
-  kmod-bnx2x  
-  kmod-e1000  
-  kmod-e1000e  
-  kmod-forcedeth  
-  kmod-i40e  
-  kmod-iavf  
   kmod-igb  
-  kmod-igbvf  
   kmod-igc  
-  kmod-ixgbe  
-  kmod-libphy  
-  kmod-macvlan  
-  kmod-mii  
-  kmod-phy-realtek  
-  kmod-phy-smsc   
-  kmod-r8152  
-  kmod-tg3  
   kmod-vmxnet3
 
 
