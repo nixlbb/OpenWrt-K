@@ -4,7 +4,7 @@
 
 1. 基于OpenWrt官方源码编译
 2. 自带丰富的LuCI插件与软件包（见内置功能）
-3. 自带SmartDNS+AdGuard Home配置（AdGuard Home 默认密码：```password```）
+3. 自带AdGuard Home配置（AdGuard Home 默认密码：```password```）
 4. 随固件编译几乎全部kmod（无sfe），拒绝kernel版本不兼容(kmod在Releases allkmod.zip中，建议与固件一同下载)
 5. 固件自带OpenWrt-K工具支持升级官方源没有的软件包（使用```openwrt-k```命令）
 6. 提供多种格式固件以应对不同需求
@@ -18,7 +18,6 @@
   luci-app-firewall：防火墙  
   luci-app-opkg：软件包  
   [luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
-  luci-app-upnp：通用即插即用（UPnP）  
   luci-app-webadmin：Web 管理页面设置  
 
 1. 其他部分软件包：  
