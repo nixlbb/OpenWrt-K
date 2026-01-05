@@ -18,16 +18,13 @@
   luci-app-firewall：防火墙  
   luci-app-opkg：软件包  
   [luci-app-openclash](https://github.com/vernesong/OpenClash):可运行在 OpenWrt 上的 Clash 客户端  
-  luci-app-webadmin：Web 管理页面设置  
 
-1. 其他部分软件包：  
+2. 其他部分软件包：  
   sudo：sudo命令支持  
   htop：系统监控与进程管理软件    
-1. LuCI主题：[Argon](https://github.com/jerrykuku/luci-theme-argon)
-
     > + 以上软件包都在生成在Releases的package.zip文件中，可安装使用。
 
-2. 网卡驱动： 
+3. 网卡驱动： 
   kmod-igb  
   kmod-igc  
   kmod-vmxnet3
